@@ -83,4 +83,9 @@ public class FlutterJsonToDartAction extends AnAction {
         //项目不为空，并且点击的是一个目录时，显示 action
         e.getPresentation().setEnabledAndVisible(enabled);
     }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.BGT; // 让 update 在后台线程执行
+    }
 }

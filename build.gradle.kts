@@ -19,19 +19,24 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    testImplementation("junit:junit:4.13.2")
+}
+
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-    version.set("2021.3.3")
+    version.set("2025.2.2")
     type.set("IC") // Target IDE Platform
 
     plugins.set(
         listOf(
             "com.intellij.java",
+            "com.intellij.modules.json",
             //因为要生成 dart 文件，需要使用到 dart 插件中的类，所以这里要引入 dart 插件
-            "Dart:213.5744.122", //https://plugins.jetbrains.com/plugin/6351-dart/versions
+            "Dart:252.25557.23", //https://plugins.jetbrains.com/plugin/6351-dart/versions
 //            "io.flutter:63.2.4",//https://plugins.jetbrains.com/plugin/9212-flutter/versions/stable
-            "com.jetbrains.sh:213.5744.121", ////https://plugins.jetbrains.com/plugin/13122-shell-script/versions
-            "org.jetbrains.plugins.terminal:213.5744.121", //https://plugins.jetbrains.com/plugin/13123-terminal/versions
+            "com.jetbrains.sh:252.25557.34", ////https://plugins.jetbrains.com/plugin/13122-shell-script/versions
+            "org.jetbrains.plugins.terminal:252.25557.34", //https://plugins.jetbrains.com/plugin/13123-terminal/versions
         )
     )
 }
@@ -50,12 +55,12 @@ tasks {
 
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "11"
-        targetCompatibility = "11"
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
 
     patchPluginXml {
-        sinceBuild.set("203.*")
+        sinceBuild.set("252")
         untilBuild.set("300")
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
